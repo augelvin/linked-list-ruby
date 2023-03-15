@@ -1,10 +1,17 @@
 class LinkedList
+
+    def initialize
+        @head = nil
+        @tail = nil
+    end
+
 end
 
 class Node
-    def value
-    end
+    attr_accessor :value, :next_node
 
-    def next_node
+    def initialize(value = nil, next_node = nil)
+        @value = value
+        @next_node = next_node
     end
 end
