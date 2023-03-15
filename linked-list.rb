@@ -14,6 +14,11 @@ class LinkedList
         @tail = @tail.next_node
     end
 
+    def prepend(value)
+        @head = Node.new(value, @head.next_node)
+    end
+
+
     def tail(node = @head)
         return node if node.nil? || node.next_node.nil?
         current_node = node.next_node
@@ -35,4 +40,5 @@ list = LinkedList.new
 p list.append('test')
 p list.append('test2')
 p list.append('test3')
+p list.prepend('test0')
 p list.tail
