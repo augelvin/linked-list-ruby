@@ -39,10 +39,10 @@ class LinkedList
   end
 
   def at(index)
-    return head if index == 1
+    return head if index.zero?
 
     node = @head
-    [2..index].each { node = node.next_node }
+    (1..index).each { node = node.next_node }
     node
   end
 
@@ -57,7 +57,6 @@ class LinkedList
     node = @head
     node = node.next_node until node.next_node.next_node.nil?
     node.next_node = nil
-    @head
   end
 
   def contains?(value)
@@ -92,6 +91,15 @@ class LinkedList
     string += 'nil'
     string
   end
+
+  def insert_at(value, index)
+    return prepend(value) if index.zero?
+
+    following = at(index)
+    node = Node.new(value, following)
+    at(index - 1).next_node = node
+    @head
+  end
 end
 
 class Node
@@ -123,3 +131,4 @@ puts list.to_s
 list2 = LinkedList.new
 puts list2.to_s
 
+p list.insert_at('test0.5', 1)
