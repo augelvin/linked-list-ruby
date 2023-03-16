@@ -1,4 +1,6 @@
 class LinkedList
+  attr_reader :head
+
   def initialize
     @head = nil
     @tail = nil
@@ -31,8 +33,17 @@ class LinkedList
 
   def tail(node = @head)
     return node if node.nil? || node.next_node.nil?
+
     current_node = node.next_node
     tail(current_node)
+  end
+
+  def at(index)
+    return head if index == 1
+
+    node = @head
+    [2..index].each { node = node.next_node }
+    node
   end
 end
 
@@ -46,9 +57,11 @@ class Node
 end
 
 list = LinkedList.new
-p list.append('test')
+p list.append('test1')
 p list.append('test2')
 p list.append('test3')
 p list.prepend('test0')
 p list.tail
 p list.size
+p list.head
+p list.at(2)
