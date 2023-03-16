@@ -98,13 +98,23 @@ class LinkedList
   def insert_at(value, index)
     return prepend(value) if index.zero?
     if at(index - 1).nil?
-      puts 'index to high'
+      puts 'index is too high'
       return nil
     end
 
     following = at(index)
     node = Node.new(value, following)
     at(index - 1).next_node = node
+  end
+
+  def remove_at(index)
+    if at(index).nil?
+      puts 'index is too high'
+      return nil
+    end
+
+    following = at(index).next_node
+    at(index - 1).next_node = following
     @head
   end
 end
@@ -142,4 +152,7 @@ list2 = LinkedList.new
 puts list2.to_s
 
 p list.insert_at('test0.5', 1)
+p list
 p list.insert_at('test5', 5)
+p list.remove_at(1)
+p list.remove_at(3)
