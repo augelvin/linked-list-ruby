@@ -20,7 +20,7 @@ class LinkedList
   end
 
   def size
-    return counter = 0 if @head.nil?
+    return 0 if @head.nil?
 
     counter = 1
     node = @head
@@ -74,12 +74,23 @@ class LinkedList
     index = 0
     node = @head
     until node.value == value
-      return nil if node.next_node.nil?
+      return nil if node.next_node.nil?  
 
       index += 1
       node = node.next_node
     end
     index
+  end
+
+  def to_s
+    node = @head
+    string = ''
+    until node.nil?
+      string += "( #{node.value} ) -> "
+      node = node.next_node
+    end
+    string += 'nil'
+    string
   end
 end
 
@@ -107,3 +118,8 @@ p list.contains?('test')
 p list.find('test0')
 p list.find('test2')
 p list.find('test')
+puts list.to_s
+
+list2 = LinkedList.new
+puts list2.to_s
+
