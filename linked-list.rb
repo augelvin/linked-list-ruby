@@ -44,6 +44,7 @@ class LinkedList
     node = @head
     (1..index).each do
       return nil if node.next_node.nil?
+
       node = node.next_node
     end
     node
@@ -76,7 +77,7 @@ class LinkedList
     index = 0
     node = @head
     until node.value == value
-      return nil if node.next_node.nil?  
+      return nil if node.next_node.nil?
 
       index += 1
       node = node.next_node
@@ -97,6 +98,7 @@ class LinkedList
 
   def insert_at(value, index)
     return prepend(value) if index.zero?
+
     if at(index - 1).nil?
       puts 'index is too high'
       return nil
