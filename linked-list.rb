@@ -45,6 +45,22 @@ class LinkedList
     [2..index].each { node = node.next_node }
     node
   end
+
+  def pop
+    return @head if @head.nil?
+
+    if @head.next_node.nil?
+      @head.next_node = nil
+      return @head
+    end
+
+    node = @head
+    until node.next_node.next_node.nil?
+      node = node.next_node
+    end
+    node.next_node = nil
+    node
+  end
 end
 
 class Node
@@ -65,3 +81,4 @@ p list.tail
 p list.size
 p list.head
 p list.at(2)
+p list.pop
