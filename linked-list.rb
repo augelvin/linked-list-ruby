@@ -1,5 +1,4 @@
 class LinkedList
-
   def initialize
     @head = nil
     @tail = nil
@@ -15,13 +14,15 @@ class LinkedList
   end
 
   def prepend(value)
-    @head = Node.new(value, @head.next_node)
+    @head = Node.new(value, @head)
   end
 
   def size
+    return counter = 0 if @head.nil?
+
     counter = 1
     node = @head
-    until node.next_node.nil? do
+    until node.next_node.nil?
       counter += 1
       node = node.next_node
     end
@@ -33,16 +34,15 @@ class LinkedList
     current_node = node.next_node
     tail(current_node)
   end
-
 end
 
 class Node
-    attr_accessor :value, :next_node
+  attr_accessor :value, :next_node
 
-    def initialize(value = nil, next_node = nil)
-        @value = value
-        @next_node = next_node
-    end
+  def initialize(value = nil, next_node = nil)
+    @value = value
+    @next_node = next_node
+  end
 end
 
 list = LinkedList.new
