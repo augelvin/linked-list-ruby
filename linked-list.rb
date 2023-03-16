@@ -55,11 +55,19 @@ class LinkedList
     end
 
     node = @head
-    until node.next_node.next_node.nil?
+    node = node.next_node until node.next_node.next_node.nil?
+    node.next_node = nil
+    @head
+  end
+
+  def contains?(value)
+    node = @head
+    until node.value == value
+      return false if node.next_node.nil?
+
       node = node.next_node
     end
-    node.next_node = nil
-    node
+    true
   end
 end
 
@@ -82,3 +90,5 @@ p list.size
 p list.head
 p list.at(2)
 p list.pop
+p list.contains?('test2')
+p list.contains?('test')
